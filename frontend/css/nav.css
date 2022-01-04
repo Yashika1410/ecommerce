@@ -40,6 +40,7 @@
     background: none;
     outline: none;
     color: white;
+    text-transform: capitalize;
 }
 .search-box::placeholder { 
   color:white;
