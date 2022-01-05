@@ -8,7 +8,12 @@ const createNavFun=()=>{
             <input type="text" class="search-box" placeholder="search brand, product">
             <button class="search-btn">search</button>
         </div>
-        <a href="#"><img src="images/user.png" alt=""></a>
+        <a><img src="images/user.png" id="user-img" alt="">
+        <div class="login-logout-popup hide">
+        <p class="acco-info">Log in as, name</p>
+        <button class="btn" id="user-btn">Log out</button>
+        </div>
+        </a>
         <a href="#"><img src="images/cart.png" alt=""></a>
     </div>
 </div>
@@ -19,3 +24,28 @@ const createNavFun=()=>{
 </ul>`;
 }
 createNavFun();
+const userImgBtn=document.querySelector('#user-img');
+const userPop = document.querySelector('.login-logout-popup');
+const popuptxt = document.querySelector('.acco-info');
+const actionBtn = document.querySelector('#user-btn');
+userImgBtn.addEventListener('click',()=>{
+    userPop.classList.toggle('hide');
+})
+window.onload=()=>{
+    let user=JSON.parse(sessionStorage.user||null);
+    if(user!=null){
+        popuptxt.innerHTML=`Log in as,${user.name}`;
+        actionBtn.innerHTML='Log out';
+        actionBtn.addEventListener('click',()=>{
+            sessionStorage.clear();
+            location.reload();
+        })
+    }
+    else{
+        popuptxt.innerHTML=`Log in to place order`;
+        actionBtn.innerHTML='Log In';
+        actionBtn.addEventListener('click',()=>{
+            location.href='/login';
+        })
+    }
+}
