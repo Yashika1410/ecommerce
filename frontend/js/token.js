@@ -32,6 +32,7 @@ const showAlert = (msg) => {
     setTimeout(() => {
         alertBox.classList.remove('show');
     }, 3000);
+    return false;
 }
 const sendData = (path, data) => {
     fetch(path, {
@@ -44,6 +45,7 @@ const sendData = (path, data) => {
         })
 }
 const processData = (data) => {
+    console.log(data);
     loader.style.display = null;
     if (data.alert) {
         showAlert(data.alert);
@@ -52,5 +54,14 @@ const processData = (data) => {
         data.authToken = generateToken(data.email);
         sessionStorage.user = JSON.stringify(data);
         location.replace('/');
+    }
+    else if(data==true){
+        let user=JSON.parse(sessionStorage.user);
+        user.seller=true;
+        sessionStorage.user=JSON.stringify(user);
+        location.reload();
+    }
+    else if (data.product) {
+        location.href = '/seller';
     }
 }

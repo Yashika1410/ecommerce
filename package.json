@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Yashika1410/ecommerce#readme",
   "dependencies": {
+    "aws-sdk": "^2.1051.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "express.js": "^1.0.0",
