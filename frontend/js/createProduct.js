@@ -1,19 +1,13 @@
-let openEditor;
-
 const createProduct= (data) =>{
-    openEditor = () =>{
-        console.log('Hii');
-        sessionStorage.tempProduct = JSON.stringify(data);
-        location.href=`/add-product/${data.id}`;
-    }
+    
     let productContainer = document.querySelector('.product-container');
     productContainer.innerHTML+=`
 <div class="product-card">
     <div class="product-image">
         ${data.draft ?`<span class="tag">Draft</span>`:'' }
         <img src="${data.images[0] || 'images/no image.png'}" class="product-thumb" alt="">
-        <button class="card-action-btn edit-btn" onclick = "openEditor()"><img src="images/edit.png" alt=""></button>
-        <button class="card-action-btn open-btn" onclick="location.href = '/${data.id}'"><img src="images/open.png" alt=""></button>
+        <button class="card-action-btn edit-btn" onclick = "location.href = '/add-product/${data.id}'"><img src="images/edit.png" alt=""></button>
+        <button class="card-action-btn open-btn" onclick="location.href = '/products/${data.id}'"><img src="images/open.png" alt=""></button>
         <button class="card-action-btn delete-popup-btn" onclick="openDeletePopup('${data.id}')"><img src="images/delete.png" alt=""></button>
     </div>
     <div class="product-info">

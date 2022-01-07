@@ -9,7 +9,7 @@
     width: 500px;
     height: 500px;
     position: relative;
-    background-image: url('../images/product\ image\ 1.png');
+    /* background-image: url('../images/product\ image\ 1.png'); */
     background-size: cover;
 }
 

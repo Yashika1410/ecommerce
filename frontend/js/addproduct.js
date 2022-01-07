@@ -128,31 +128,40 @@ saveDraft.addEventListener('click', ()=>{
         sendData('/add-product', data);
     }
 })
-// const setFormsData=(data)=>{
-//     productName.value=data.name;
-//     shortLine.value=data.shortLine;
-//     des.value=data.des;
-//     sellingPrice.value=data.sellPrice;
-//     stock.value=data.stock;
-//     tags.value=data.tags;
-// }
-// const fetchProductData = () =>{
-//     delete sessionStorage.tempProduct;
-//     fetch('/get-products', {
-//         method: 'post',
-//         headers: new Headers({'Content-Type': 'application/json'}),
-//         body: JSON.stringify({ email: user.email, id: productId })
-//     }).then((response)=> response.json()).then(data => {
-//         setFormsData(data)
-//     });
-//     // 
+const setFormsData=(data)=>{
+    productName.value=data.name;
+    console.log(data.shortLine);
+    shortLine.value=data.shortDes;
+    des.value=data.des;
+    sellingPrice.value=data.sellPrice;
+    stock.value=data.stock;
+    tags.value=data.tags;
+
+    imagePaths=data.images;
+    imagePaths.forEach((url, i)=>{
+        let label = document.querySelector(`label[for=${uploadImages[i].id}]`);
+        label.style.backgroundImage = `url(${url})`;
+        let productImage = document.querySelector('.product-image');
+        productImage.style.backgroundImage = `url(${url})`;
+    });
+    sizes=data.sizes;
+    let sizeCheckBox =document.querySelectorAll('.size-checkbox');
+    sizeCheckBox.forEach(item=>{
+        if(sizes.includes(item.value)){
+            item.setAttribute('checked','');
+        }
+    });
+}
+const fetchProductData = () =>{
+    fetch('/get-products',{
+        method: 'post',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        body: JSON.stringify({email: user.email, id: productId})
+    }).then(res=>res.json()).then(data => {setFormsData(data)});
     
-// }
+}
 let productId = null;
 if(location.pathname != '/add-product'){
     productId = decodeURI(location.pathname.split('/').pop());
-   // let productDetail = JSON.parse(sessionStorage.tempProduct || null);
-    // if(productDetail==null){
-       // fetchProductData();
-    // }
+        fetchProductData();
 }

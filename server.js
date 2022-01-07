@@ -170,7 +170,7 @@ app.post('/add-product', (req, res) => {
         }
 
     // add product
-    let docName = id==undefined?`${name.toLowerCase()}-${Math.floor(Math.random() * 5000)}`:id;
+    let docName = id == undefined?`${name.toLowerCase()}-${Math.floor(Math.random() * 5000)}`:id;
     db.collection('products').doc(docName).set(req.body)
     .then(data => {
         res.json({'product': name});
@@ -211,22 +211,25 @@ app.post('/seller', (req, res) => {
 
 app.post('/get-products',(req,res) => {
     let {email,id}=req.body;
-    let docRef = id ? db.collection('products').doc(id) :db.collection('products').where('email','==',email);
+    let docRef = id ? db.collection('products').doc(id) : db.collection('products').where('email','==',email);
+    docRef.get().then((item)=>{
+        console.log(item.data);
+    })
     docRef.get().then(products => {
         if(products.empty){
             return res.json('no products');
         }
         let productArr=[];
         if(id){
-            //console.log(id,res.json(products.data));
-            return res.json(products.data);
+            //console.log(id,products.data);
+            return res.json(products.data());
         }
-        products.forEach(item=>{
+        else{products.forEach(item=>{
             let data=item.data();
             data.id = item.id;
             productArr.push(data);
         })
-        res.json(productArr);
+        res.json(productArr);}
     })
 })
 app.post('/delete-product',(req,res)=>{
@@ -238,6 +241,11 @@ app.post('/delete-product',(req,res)=>{
         res.json('err')
     })
 })
+
+app.get('/products/:id',(req,res)=>{
+    res.sendFile(path.join(staticPath,"product.html"))
+})
+
 app.get('/404', (req, res) => {
     res.sendFile(path.join(staticPath, "404.html"));
 })
