@@ -42,11 +42,10 @@ const createProductCards =(data)=>{
         if(data[i].id!=decodeURI(location.pathname.split('/').pop()))
         middle +=`
         <div class="product-card">
-                <div class="product-image" >
+                <div class="product-image" onclick="location.href='/products/${data[i].id}'>
                     <img src="${data[i].images[0]}" class="product-thumb" alt="">
-                    <button class="card-btn">add to whislist</button>
                 </div>
-                <div class="product-info" onclick="location.href='/products/${data[i].id}'">
+                <div class="product-info" ">
                     <h2 class="product-brand">${data[i].name}</h2>
                     <p class="product-short-des">${data[i].shortDes}</p>
                     <span class="price">Rs. ${data[i].sellPrice}</span>
