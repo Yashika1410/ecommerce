@@ -1,4 +1,3 @@
-let jwt = require("jsonwebtoken");
 const express = require('express');
 const admin = require('firebase-admin');
 const bcrypt = require('bcrypt');
