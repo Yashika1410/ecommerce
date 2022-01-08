@@ -131,4 +131,6 @@
 .des{
     color: #383838;
     line-height: 25px;
+    white-space: pre-wrap;
+    margin-bottom: 50px;
 }

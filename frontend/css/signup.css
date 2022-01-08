@@ -28,8 +28,7 @@ body{
     margin: 0 auto 50px;
 }
 
-input[type="text"],
-input[type="number"],
+input:not(.search-box, .checkbox, .size-checkbox, input[type="file"],input[type="password"],input[type="email"]),
 textarea{
     display: block;
     width: 300px;
@@ -47,8 +46,8 @@ textarea{
     font-family: 'roboto', sans-serif;
 }
 input[type="password"],
-input[type="email"],
-textarea{
+input[type="email"]
+{
     display: block;
     width: 300px;
     height: 40px;

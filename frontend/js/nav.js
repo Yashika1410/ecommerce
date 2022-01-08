@@ -18,7 +18,7 @@ const createNavFun=()=>{
     </div>
 </div>
 <ul class="links-container">
-    <li class="link-items"><a href="#" class="link">Home</a></li>
+    <li class="link-items"><a href="/" class="link">Home</a></li>
     <li class="link-items"><a href="#" class="link">Accessories</a></li>
     <li class="link-items"><a href="#" class="link">Cloths</a></li>
 </ul>`;

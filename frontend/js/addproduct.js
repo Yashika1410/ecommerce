@@ -107,6 +107,7 @@ addProductBtn.addEventListener('click', () => {
     if (validateForm()) { 
         loader.style.display = 'block';
         let data = productData();
+        data.draft=false;
         if(productId){
             data.id=productId;
         }
@@ -157,7 +158,9 @@ const fetchProductData = () =>{
         method: 'post',
         headers: new Headers({ 'Content-Type': 'application/json' }),
         body: JSON.stringify({email: user.email, id: productId})
-    }).then(res=>res.json()).then(data => {setFormsData(data)});
+    }).then(res=>res.json()).then(data => {setFormsData(data)}).catch(err=>{
+        location.replace('/404');
+    });
     
 }
 let productId = null;

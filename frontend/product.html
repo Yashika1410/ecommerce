@@ -42,12 +42,20 @@
             <label for="xxxl-size" class="size-radio-btn">xxxl</label>
         <div class="btn-group">
             <button class="btn cart-btn">add to cart</button>
-            <button class="btn">add to wishlist</button></div>
+            <button class="btn wishlist-btn">add to wishlist</button></div>
         </div>
     </section>
     <section class="detail-des">
         <h2 class="heading">description</h2>
         <p class="des"></p>
+    </section>
+    <section class="product">
+    
+        <h2 class="product-category">similar products</h2>
+        <button class="prev-btn"><img src="../images/arrow.png" alt=""></button>
+        <button class="next-btn"><img src="../images/arrow.png" alt=""></button>
+        <div class="product-container" id="product-container-card-for-scroll">
+        </div>
     </section>
     <footer></footer>
 
@@ -55,5 +63,14 @@
     <script src="../js/footer.js"></script>
     <script src="../js/home.js"></script>
     <script src="../js/product.js"></script>
+    <script>
+        getProducts().then(data => {
+            //console.log(document.querySelector('#product-container-card-for-scroll'))
+            const silderLoaderPage = document.querySelector('#product-container-card-for-scroll');
+            silderLoaderPage.innerHTML = `
+            ${createProductCards(data)}
+           `;
+        })
+    </script>
 </body>
 </html>
